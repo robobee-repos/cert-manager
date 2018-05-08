@@ -8,7 +8,7 @@
 /*
  *
  */
-clusterissuer-yaml(parent, vars) ::= <<
+z-clusterissuer-yaml(parent, vars) ::= <<
 
 ---
 
