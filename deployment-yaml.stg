@@ -66,7 +66,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-<resourcesGroup(parent, vars, vars.certManager.limits, vars.certManager.requests)>
+  <resourcesGroup(parent, vars, vars.certManager.limits, vars.certManager.requests)>
 <tolerationMasterGroup(parent, vars, vars.certManager.allowOnMaster)>
 <tolerationsGroup(parent, vars, vars.certManager.tolerations, vars.certManager.allowOnMaster)>
 <affinitiesGroup(parent, vars, vars.certManager.affinity)>
