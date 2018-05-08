@@ -8,7 +8,7 @@
 /*
  *
  */
-00-namespace-yaml(parent, vars) ::= <<
+a-namespace-yaml(parent, vars) ::= <<
 ##---
 # Source: cert-manager/templates/00-namespace.yaml
 
