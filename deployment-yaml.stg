@@ -61,6 +61,7 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
           - --cluster-resource-namespace=$(POD_NAMESPACE)
+          - --leader-election-namespace=$(POD_NAMESPACE)
           env:
           - name: POD_NAMESPACE
             valueFrom:
