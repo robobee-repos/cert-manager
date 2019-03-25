@@ -1,5 +1,31 @@
 /*
  * 
+ * Optional:
+ *
+ * vars.certManagerCainjector.limits.cpu
+ * vars.certManagerCainjector.limits.memory
+ * vars.certManagerCainjector.requests.cpu
+ * vars.certManagerCainjector.requests.memory
+ * 
+ * vars.certManagerWebhook.limits.cpu
+ * vars.certManagerWebhook.limits.memory
+ * vars.certManagerWebhook.requests.cpu
+ * vars.certManagerWebhook.requests.memory
+ * 
+ * vars.certManager.limits.cpu
+ * vars.certManager.limits.memory
+ * vars.certManager.requests.cpu
+ * vars.certManager.requests.memory
+ * 
+ * Used for all deployments:
+ * 
+ * vars.certManager.affinity.key
+ * vars.certManager.affinity.name
+ * vars.certManager.affinity.required
+ * vars.certManager.allowOnMaster
+ * vars.certManager.tolerations[].effect
+ * vars.certManager.tolerations[].key
+ * vars.certManager.tolerations[].value
  */
 
 /*
@@ -1394,8 +1420,10 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          resources:
-            {}
+          <resourcesGroup(parent, vars, vars.certManagerCainjector)>
+      <affinitiesGroup(parent, vars, vars.certManager.affinity)>
+      <tolerationMasterGroup(parent, vars, vars.certManager.allowOnMaster)>
+      <tolerationsGroup(parent, vars, vars.certManager.tolerations, vars.certManager.allowOnMaster)>
             
 
 ---
@@ -1438,8 +1466,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          resources:
-            {}
+          <resourcesGroup(parent, vars, vars.certManagerWebhook)>
             
           volumeMounts:
           - name: certs
@@ -1448,6 +1475,9 @@ spec:
       - name: certs
         secret:
           secretName: cert-manager-webhook-webhook-tls
+      <affinitiesGroup(parent, vars, vars.certManager.affinity)>
+      <tolerationMasterGroup(parent, vars, vars.certManager.allowOnMaster)>
+      <tolerationsGroup(parent, vars, vars.certManager.tolerations, vars.certManager.allowOnMaster)>
 
 ---
 # Source: cert-manager/templates/deployment.yaml
@@ -1492,10 +1522,10 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          resources:
-            requests:
-              cpu: 10m
-              memory: 32Mi
+          <resourcesGroup(parent, vars, vars.certManager)>
+      <affinitiesGroup(parent, vars, vars.certManager.affinity)>
+      <tolerationMasterGroup(parent, vars, vars.certManager.allowOnMaster)>
+      <tolerationsGroup(parent, vars, vars.certManager.tolerations, vars.certManager.allowOnMaster)>
             
 
 ---
