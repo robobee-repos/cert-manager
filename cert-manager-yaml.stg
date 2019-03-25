@@ -1,26 +1,6 @@
 /*
- * Mandatory:
- *
- * vars.certManager.image.version
- * vars.certManager.limits.cpu
- * vars.certManager.limits.memory
- * vars.certManager.requests.cpu
- * vars.certManager.requests.memory
  * 
- * Optional:
- *
- * vars.certManager.affinity.key
- * vars.certManager.affinity.name
- * vars.certManager.affinity.required
- * vars.certManager.allowOnMaster
- * vars.certManager.tolerations[].effect
- * vars.certManager.tolerations[].key
- * vars.certManager.tolerations[].value
  */
-
-import "_affinities.stg"
-import "_resources.stg"
-import "_tolerations.stg"
 
 /*
  *
