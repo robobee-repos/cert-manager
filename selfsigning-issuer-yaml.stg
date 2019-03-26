@@ -8,7 +8,7 @@
 /*
  *
  */
-cert-manager-yaml(parent, vars) ::= <<
+selfsigning-issuer-yaml(parent, vars) ::= <<
 <if(vars.clusterIssuer.selfsigning.enabled)>
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: ClusterIssuer
